@@ -34,6 +34,10 @@ export default function Home() {
         alteraPrecoProduto(19)
     }
 
+    function aumenta10(){
+        alteraCarrinho( carrinho + 10 )
+    }
+
     return (
         <div className="p-5">
 
@@ -50,6 +54,7 @@ export default function Home() {
             }
             
             <button onClick={()=>aplicaCupom()} className="ml-3 bg-black text-white p-3 mb-5">Adicionar cupom</button>
+            <button onClick={()=>alteraCarrinho( carrinho + 10 )} className="ml-3 bg-red-500 text-white p-3 mb-5">Adicionar +10</button>
 
             <hr/>
 
