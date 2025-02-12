@@ -4,29 +4,55 @@ import { useState } from "react";
 
 function Cadastro() {
 
-    const [ nome, alteraNome ] = useState("");
-    const [ erroNome, alteraErroNome ] = useState(false);
+    //const [ nome, alteraNome ] = useState("");
+    //const [ senha, alteraSenha ] = useState("");
+    // [ idade, alteraIdade ] = useState(0);
+    //const [ altura, alteraAltura ] = useState(1.5);
 
-    const [ senha, alteraSenha ] = useState("")
-    const [ confirma, alteraConfirma ] = useState("")
-    const [ erroSenha, alteraErroSenha ] = useState(false)
+    const [ usuario, alteraUsuario] = useState({
+        nome: "",
+        senha: "",
+        idade: 0,
+        altura: 1.5
+    }); //objeto anonimo vazio
+
+    function alteraNome(pnome){//os ... faz isso pra você
+        const u = {
+            nome: pnome,
+            senha: usuario.senha,
+            idade: usuario.idade,
+            altura: usuario.altura
+        }
+
+        alteraUsuario(u)
+    }
+
+
+    
+
+    const [ erroNome, alteraErroNome ] = useState(false);    
+    const [ erroSenha, alteraErroSenha ] = useState(false);
+
+    const [ confirma, alteraConfirma ] = useState("");
 
     function salvar(){
-        console.log("O nome cadastrado é: "+nome);
-        alteraNome( nome.toUpperCase() )
+        console.log("O nome cadastrado é: "+usuario.nome);
+        alteraUsuario( usuario.nome.toUpperCase() )
 
-        if( nome.length < 5 ){
+        if( usuario.nome.length < 5 ){
             alteraErroNome(true);
         }else{
             alteraErroNome(false);
         }
 
-        if( senha != confirma ){
+        if( usuario.senha != confirma ){
             alteraErroSenha(true);
         }else{
             alteraErroSenha(false);
         }
 
+
+        
     }
 
     return (
@@ -37,7 +63,7 @@ function Cadastro() {
             <hr/>
 
             <p>Digite seu nome:</p>
-            <input onChange={ (e)=> alteraNome( e.target.value ) } value={nome} className="outline" />
+            <input onChange={ (e)=> alteraUsuario({ ...usuario, nome: e.target.value }) } value={usuario.nome} className="outline" />
             <br/>
             {
                 erroNome == true ?
@@ -49,7 +75,7 @@ function Cadastro() {
             }
 
             <p>Digite sua senha:</p>
-            <input onChange={ (e)=> alteraSenha( e.target.value ) } value={senha} className="outline" />
+            <input onChange={ (e)=> alteraSenha( e.target.value ) } value={usuario.senha} className="outline" />
             <br/>
             <p>Confirme a senha:</p>
             <input onChange={ (e)=> alteraConfirma( e.target.value ) } value={confirma} className="outline" />
