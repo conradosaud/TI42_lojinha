@@ -3,13 +3,22 @@ import { useState } from "react";
 
 function Produtos() {
 
-    const [ produto, alteraProduto ] = useState({});
+    //const [ produto, alteraProduto ] = useState({});
+    const [ produtos, alteraProdutos ] = useState([{
+        nome: "Havaianas",
+        preco: "29,90",
+        quantidade: 60
+    },{
+        nome: "Sapatênis",
+        preco: "125,50",
+        quantidade: 11
+    }]);
 
     const [ nome, alteraNome ] = useState("")
     const [ preco, alteraPreco ] = useState("")
     const [ quantidade, alteraQuantidade ] = useState("")
 
-    const [ mostraListagem, alteraMostraListagem ] = useState(false);
+    const [ mostraListagem, alteraMostraListagem ] = useState(true);
     const [ mostraCadastro, alteraMostraCadastro ] = useState(true);
 
     function alteraExibicao(tela){
@@ -36,7 +45,7 @@ function Produtos() {
             data: Date()
         }
 
-        alteraProduto(objeto)
+        alteraProdutos([...produtos, objeto]);
 
     }
 
@@ -101,9 +110,7 @@ function Produtos() {
                             <h2 className="font-bold mb-5">Listagem de produtos</h2>
 
                             <ul>
-                                <li>{produto.nome} - R$ {produto.preco} - {produto.quantidade} itens</li>
-                                <li>Produto 2</li>
-                                <li>Produto 3</li>
+                                { produtos.map( (i)=> <li>{i.nome} - R$ {i.preco} - {i.quantidade} itens</li> ) }
                             </ul>
 
                         </div>

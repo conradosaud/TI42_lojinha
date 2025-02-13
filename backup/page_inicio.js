@@ -10,9 +10,7 @@ export default function Home() {
     const [ precoProduto, alteraPrecoProduto ] = useState(25);
     const [ valorTotal, alteraValorTotal ]  = useState(0);
 
-    const [ tamanhos, alteraTamanhos ] = useState( ["P", "M", "G"] );
-    const [ cores, alteraCores ] = useState(["Preto", "Amarelo", "Azul"]);
-    const [ entregas, alteraEntregas ] = useState(["PAC", "Sedex", "Retirada"]);
+    const [ tamanhos, alteraTamanhos ] = useState(["P", "M", "G"])
 
     function manipulaCarrinho( adicionar ){
 
@@ -73,19 +71,23 @@ export default function Home() {
             <div className="border bg-sky-700 w-fit p-2 text-center text-white">
                 <img src="https://placehold.co/200"/>
                 <h3 className="text-lg text-lime-200 font-bold">Produto modelo</h3>
-                
-                <p>Tamanhos: { tamanhos.map( (i)=> <span>{i}, </span> ) } </p>
-                
-                <p>Cores:</p>
+                <p>Tamanhos: { tamanhos.map(()=> <span>Olá</span> ) }</p>
                 <ul>
-                    { cores.map( (i)=> <li className="border" >{i}</li> ) }                    
+                    {
+                        tamanhos.map(item =>
+                            <li className="border mt-2" >{item}</li>
+                        )
+                    }
+                    
                 </ul>
 
-                <p className="mb-3">Entrega:</p>
-                { 
-                    entregas.map( (i)=>
-                        <span className="bg-gray-200 m-2 p-2 text-black" >{i}</span> )
-                }                
+                <h2>Entrega:</h2>
+                {
+                    tamanhos.map(item =>
+                        <span className="bg-gray-200 text-red-500 mt-4 mx-2 p-2 rounded" >{item}</span>
+                    )
+                }
+                
 
                 <p>R$ {precoProduto},00</p>
                 <button onClick={()=>manipulaCarrinho(true)} className="bg-lime-400 text-black mt-5 p-3">Adicionar ao carrinho</button>
